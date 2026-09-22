@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>کافه | منو</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap');
+
+:root{
+  --bg:#050505;
+  --bg2:#0b0b0b;
+  --card:#11110f;
+  --card2:#151410;
+  --ink:#f4efdf;
+  --muted:#aaa18e;
+  --line:#2b271c;
+  --gold:#d4af37;
+  --gold2:#f4d878;
+  --gold3:#a47b16;
+  --chip:#171612;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  position:relative;
+  background:
+    radial-gradient(circle at 10% 0%,rgba(212,175,55,.12),transparent 28%),
+    radial-gradient(circle at 90% 100%,rgba(212,175,55,.08),transparent 30%),
+    var(--bg);
+  color:var(--ink);
+  font-family:Vazirmatn,Tahoma,sans-serif;
+}
+body::before{
+  content:"";
+  position:fixed;
+  top:0;
+  bottom:0;
+  left:0;
+  width:2px;
+  z-index:9998;
+  pointer-events:none;
+  background:var(--gold);
+  box-shadow:0 0 12px rgba(212,175,55,.35);
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  top:0;
+  bottom:0;
+  right:0;
+  width:2px;
+  z-index:9998;
+  pointer-events:none;
+  background:var(--gold);
+  box-shadow:0 0 12px rgba(212,175,55,.35);
+}
+.hero{
+  padding:52px 20px 34px;
+  text-align:center;
+  background:linear-gradient(180deg,#15130e,var(--bg));
+  border-bottom:1px solid rgba(212,175,55,.16);
+}
+.logo{
+  width:68px;height:68px;border-radius:20px;margin:auto;
+  display:grid;place-items:center;
+  background:linear-gradient(145deg,var(--gold2),var(--gold3));
+  color:#080808;font-size:32px;
+  box-shadow:0 0 30px rgba(212,175,55,.25),0 12px 30px #0008;
+  animation:logoFloat 2.8s ease-in-out infinite,logoGlow 2.2s ease-in-out infinite;
+}
+@keyframes logoFloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-7px) rotate(3deg)}}
+@keyframes logoGlow{0%,100%{box-shadow:0 0 22px rgba(212,175,55,.18),0 12px 30px #0008}50%{box-shadow:0 0 38px rgba(212,175,55,.42),0 12px 30px #0008}}
+h1{
+  margin:16px 0 5px;font-size:32px;
+  color:var(--gold2);
+  text-shadow:0 0 22px rgba(212,175,55,.18);
+}
+.subtitle{color:var(--muted);margin:0}
+.wrap{max-width:1100px;margin:auto;padding:0 18px 60px}
+.toolbar{
+  position:sticky;top:0;z-index:10;padding:16px 0;
+  background:rgba(5,5,5,.86);
+  backdrop-filter:blur(14px);
+}
+.search{display:flex;gap:10px;margin:0 0 12px;width:100%;max-width:none}
+.search input{
+  width:100%;border:1px solid var(--line);
+  background:#0e0e0d;color:var(--ink);
+  border-radius:14px;padding:13px 16px;font:inherit;outline:none;
+  transition:.25s;
+}
+.search input::placeholder{color:#766f61}
+.search input:focus{
+  border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(212,175,55,.09),0 0 22px rgba(212,175,55,.08);
+}
+.chips{display:flex;gap:8px;overflow:auto;padding-bottom:3px}
+.chip{
+  border:1px solid var(--line);background:var(--chip);
+  padding:10px 15px;border-radius:999px;font:inherit;
+  white-space:nowrap;cursor:pointer;color:var(--muted);
+  transition:.25s;
+}
+.chip:hover{border-color:#665322;color:var(--gold2)}
+.chip.active{
+  background:linear-gradient(135deg,var(--gold2),var(--gold3));
+  border-color:var(--gold);
+  color:#090909;font-weight:700;
+  box-shadow:0 5px 18px rgba(212,175,55,.18);
+}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+.filter{
+  background:#0f0f0e;border:1px solid var(--line);
+  border-radius:12px;padding:9px 12px;font:inherit;
+  color:var(--muted);cursor:pointer;transition:.25s;
+}
+.filter:hover{border-color:#6b5720;color:var(--gold2)}
+.filter.active{border-color:var(--gold);color:var(--gold2);box-shadow:0 0 16px rgba(212,175,55,.08)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{
+  background:linear-gradient(145deg,var(--card),var(--card2));
+  border:1px solid var(--line);
+  border-radius:20px;padding:18px;
+  transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease;
+  box-shadow:0 8px 25px #0007;
+  animation:cardIn .55s ease both;
+}
+.card:hover{
+  transform:translateY(-7px);
+  border-color:rgba(212,175,55,.48);
+  box-shadow:0 16px 38px #0009,0 0 22px rgba(212,175,55,.07);
+}
+@keyframes cardIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.top{display:flex;justify-content:space-between;gap:12px}
+.icon{
+  width:52px;height:52px;border-radius:15px;
+  background:linear-gradient(145deg,#2b2618,#17150f);
+  border:1px solid rgba(212,175,55,.25);
+  display:grid;place-items:center;font-size:25px;flex:none;
+  transition:.3s;
+  animation:iconFloat 3s ease-in-out infinite;
+}
+.card:hover .icon{
+  transform:scale(1.13) rotate(-6deg);
+  box-shadow:0 0 24px rgba(212,175,55,.22);
+  border-color:var(--gold);
+}
+@keyframes iconFloat{0%,100%{translate:0 0}50%{translate:0 -3px}}
+.badge{
+  font-size:11px;color:#0a0906;
+  background:linear-gradient(135deg,var(--gold2),var(--gold3));
+  padding:5px 8px;border-radius:8px;height:max-content;font-weight:700;
+}
+.card h3{margin:12px 0 5px;font-size:18px;color:#f5efd9}
+.desc{margin:0;color:var(--muted);font-size:13px;line-height:1.8;min-height:47px}
+.bottom{display:flex;align-items:center;justify-content:space-between;margin-top:14px}
+.price{font-weight:800;color:var(--gold2)}
+.unit{font-size:11px;color:var(--muted);font-weight:400}
+.bottom>span:last-child{color:#8e866f;font-size:12px}
+.empty{text-align:center;padding:50px;color:var(--muted);display:none}
+footer{text-align:center;color:#625c4f;font-size:12px;padding:35px 0}
+button{
+  -webkit-appearance:none;
+  appearance:none;
+  outline:none;
+}
+button:focus-visible{
+  outline:2px solid var(--gold);
+  outline-offset:2px;
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+    scroll-behavior:auto !important;
+  }
+}
+@media(max-width:800px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){
+  h1{font-size:26px}.grid{grid-template-columns:1fr}
+  .hero{padding-top:35px}.card{padding:16px}
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <img src="Graph.png" width="90">
+  <h1> کافه گراف</h1>
+  <p class="subtitle">به کافه گراف خوش اومدید</p>
+</header>
+
+<main class="wrap">
+  <div class="toolbar">
+    <div class="search"><input id="search" type="search" placeholder="جستجو در منو..."></div>
+    <div class="chips" id="categories"></div>
+  </div>
+  <div class="filters" id="filters">
+    <button class="filter active" data-filter="all">همه</button>
+      </div>
+  <section class="grid" id="grid"></section>
+  <div class="empty" id="empty">موردی با این مشخصات پیدا نشد.</div>
+  <footer></footer>
+</main>
+
+<script>
+const items=[
+ {name:"اسپرسو دبل",cat:"اسپرسو بار",type:"hot",price:"175,000تومان",icon:"☕",desc:"اسپرسو دبل"},
+ {name:"آمریکانو",cat:"اسپرسو بار",type:"hot",price:"200,000تومان",icon:"☕",desc:"آمریکانو"},
+ {name:"کاپوچینو",cat:"اسپرسو بار",type:"hot",price:"250,000تومان",icon:"☕",desc:"کاپوچینو"},
+ {name:"کورتادو",cat:"اسپرسو بار",type:"hot",price:"200,تومان000",icon:"☕",desc:"کورتادو"},
+ {name:"لاته",cat:"اسپرسو بار",type:"hot",price:"275,000تومان",icon:"☕",desc:"لاته"},
+ {name:"موکا",cat:"اسپرسو بار",type:"hot",price:"275,000تومان",icon:"☕",desc:"موکا"},
+ {name:"کارامل ماکیاتو",cat:"اسپرسو بار",type:"hot",price:"270,000تومان",icon:"☕",desc:"کارامل ماکیاتو"},
+ {name:"موکا چینو",cat:"اسپرسو بار",type:"hot",price:"285,000تومان",icon:"☕",desc:"موکا چینو"},
+ {name:"لاته با سیروپ دلخواه",cat:"اسپرسو بار",type:"hot",price:"290,000تومان",icon:"☕",desc:"لاته با سیروپ دلخواه"},
+ {name:"پینات لاته",cat:"اسپرسو بار",type:"hot",price:"295,000تومان",icon:"☕",desc:"پینات لاته"},
+ {name:"نوتلا لاته",cat:"اسپرسو بار",type:"hot",price:"295,000تومان",icon:"☕",desc:"نوتلا لاته"},
+ {name:"وایت چاکلت",cat:"نوشیدنی گرم",type:"hot",price:"190,000تومان",icon:"☕",desc:"وایت چاکلت"},
+ {name:"ماسالا",cat:"نوشیدنی گرم",type:"hot",price:"195,000تومان",icon:"☕",desc:"ماسالا"},
+ {name:"چاکلت پینات",cat:"نوشیدنی گرم",type:"hot",price:"250,000",icon:"☕",desc:"چاکلت پینات"},
+ {name:"هات بیسکویت",cat:"نوشیدنی گرم",type:"hot",price:"250,000تومان",icon:"☕",desc:"هات بیسکویت"},
+ {name:"هات چاکلت",cat:"نوشیدنی گرم",type:"hot",price:"220,000تومان",icon:"☕",desc:"هات چاکلت"},
+ {name:"نسکافه",cat:"نوشیدنی گرم",type:"hot",price:"200,000تومان",icon:"☕",desc:"نسکافه"},
+ {name:"شیر کاکائو",cat:"نوشیدنی گرم",type:"hot",price:"190,000تومان",icon:"☕",desc:"شیر کاکائو"},
+ {name:"هات نوتلا",cat:"نوشیدنی گرم",type:"hot",price:"270,000تومان",icon:"☕",desc:"هات نوتلا"},
+ {name:"کورنی چاکلتا",cat:"نوشیدنی گرم",type:"hot",price:"250,000تومان",icon:"☕",desc:"کورنی چاکلت"},
+ {name:"موهیتو",cat:"ماکتیل ها",type:"cold",price:"195,000تومان",icon:"🍹",desc:"موهیتو"},
+ {name:"ردموهیتو",cat:"ماکتیل ها",type:"cold",price:"220,000تومان",icon:"🍹",desc:"ردموهیتو"},
+ {name:"لیموناد",cat:"ماکتیل ها",type:"cold",price:"175,000تومان",icon:"🍹",desc:"لیموناد"},
+ {name:"جینجر لیموناد",cat:"ماکتیل ها",type:"cold",price:"220,000تومان",icon:"🍹",desc:"جینجر لیموناد"},
+ {name:"لیمو سودا",cat:"ماکتیل ها",type:"cold",price:"195,000تومان",icon:"🍹",desc:"لیمو سودا"},
+ {name:"چای سیاه",cat:"دمنوش ها",type:"hot",price:"75,000تومان",icon:"🍵",desc:"چای سیاه"},
+ {name:"چای زعفرانی",cat:"دمنوش ها",type:"hot",price:"90,000تومان",icon:"🍵",desc:"چای زعفرانی"},
+ {name:"چای کرک",cat:"دمنوش ها",type:"hot",price:"200,000",icon:"🍵",desc:"چای کرک"},
+ {name:"چای ترش",cat:"دمنوش ها",type:"hot",price:"90,000تومان",icon:"🍵",desc:"چای ترش"},
+ {name:"چای",cat:"دمنوش ها",type:"hot",price:"90,000تومان",icon:"🍵",desc:"چای"},
+ {name:"گل گاو زبان",cat:"دمنوش ها",type:"hot",price:"135,000تومان",icon:"🍵",desc:"گل گاو زبان"},
+ {name:"چای به لیمو",cat:"دمنوش ها",type:"hot",price:"120,000تومان",icon:"🍵",desc:"چای بهلیمو"},
+ {name:"آرامش بخش",cat:"دمنوش ها",type:"hot",price:"135,000تومان",icon:"🍵",desc:"آرامش بخش"},
+ {name:"سرماخوردگی",cat:"دمنوش ها",type:"hot",price:"110,000تومان",icon:"🍵",desc:"سرماخوردگی"},
+ {name:"شیک وانیل",cat:"شیک",type:"cold",price:"300,000تومان",icon:"🥤",desc:"شیک وانیل"},
+ {name:"شیک شکلات",cat:"شیک",type:"cold",price:"300,000تومان",icon:"🥤",desc:"شیک شکلات"},
+ {name:"شیک نوتلا",cat:"شیک",type:"cold",price:"350,000تومان",icon:"🥤",desc:"شیک نوتلا"},
+ {name:"شیک بیسکویت",cat:"شیک",type:"cold",price:"350,000تومان",icon:"🥤",desc:"شیک بیسکویت"},
+ {name:"شیک پینات",cat:"شیک",type:"cold",price:"350,000تومان",icon:"🥤",desc:"شیک پینات"},
+ {name:"شیک موز شکلات",cat:"شیک",type:"cold",price:"370,000تومان",icon:"🥤",desc:"شیک موز شکلات"},
+ {name:"شیک توت فرنگی شکلات",cat:"شیک",type:"cold",price:"385,000تومان",icon:"🥤",desc:"شیک توت فرنگی شکلات"},
+ {name:"شیک اقیانوس",cat:"شیک",type:"cold",price:"350,000تومان",icon:"🥤",desc:"شیک اقیانوس"},
+ {name:"اسموتی استوایی",cat:"اسموتی",type:"cold",price:"265,000تومان",icon:"🥭",desc:"اسموتی استوایی"},
+ {name:"اسموتی اپل پالم",cat:"اسموتی",type:"cold",price:"260,000تومان",icon:"🥭",desc:"اسموتی اپل پالم"},
+ {name:"اسموتی برفی",cat:"اسموتی",type:"cold",price:"275,000تومان",icon:"🥭",desc:"اسموتی برفی"},
+ {name:"اسموتی رد منگو",cat:"اسموتی",type:"cold",price:"265,000تومان",icon:"🥭",desc:"اسموتی رد منگو"},
+ {name:"شیر موز",cat:"اسموتی",type:"cold",price:"-",icon:"🥭",desc:"شیر موز"},
+ {name:"آیس لاته",cat:"آیس کافی",type:"cold",price:"260,000تومان",icon:"🧊",desc:"آیس لاته"},
+ {name:"آیس آمریکانو",cat:"آیس کافی",type:"cold",price:"225,000تومان",icon:"🧊",desc:"آیس آمریکانو"},
+ {name:"آیس کارامل",cat:"آیس کافی",type:"cold",price:"280,000تومان",icon:"🧊",desc:"آیس کارامل"},
+ {name:"آیس موکا",cat:"آیس کافی",type:"cold",price:"280,000تومان",icon:"🧊",desc:"آیس موکا"},
+ {name:"آیس لاته فندق",cat:"آیس کافی",type:"cold",price:"280,000تومان",icon:"🧊",desc:"آیس لاته فندق"},
+ {name:"آفوگاتو",cat:"آیس کافی",type:"cold",price:"320,000تومان",icon:"🧊",desc:"آفوگاتو"},
+ {name:"فراپاچینو",cat:"آیس کافی",type:"cold",price:"380,000تومان",icon:"🧊",desc:"فراپاچینو"},
+ {name:"آیس کولا",cat:"آیس کافی",type:"cold",price:"350,000تومان",icon:"🧊",desc:"آیس کولا"},
+ {name:"تونیک اسپرسو",cat:"آیس کافی",type:"cold",price:"320,000تومان",icon:"🧊",desc:"تونیک اسپرسو"},
+ {name:"آب پرتقال",cat:"آب میوه",type:"cold",price:"-   ",icon:"🍊",desc:"آب پرتقال"},
+ {name:"آب سیب",cat:"آب میوه",type:"cold",price:"—",icon:"🍊",desc:"آب سیب"},
+ {name:"آب طالبی",cat:"آب میوه",type:"cold",price:"—",icon:"🍊",desc:"آب طالبی"},
+ {name:"آب هندوانه",cat:"آب میوه",type:"cold",price:"—",icon:"🍊",desc:"آب هندوانه"},
+ {name:"چیز کیک سن سباستین",cat:"کیک و دسر",type:"dessert",price:"—",icon:"🍰",desc:"چیز کیک سن سباستین"},
+ {name:"ترامیسو",cat:"کیک و دسر",type:"dessert",price:"—",icon:"🍰",desc:"ترامیسو"},
+ {name:"کوکی نیویورکی",cat:"کیک و دسر",type:"dessert",price:"—",icon:"🍰",desc:"کوکی نیویورکی"},
+ {name:"کیک شکلاتی",cat:"کیک و دسر",type:"dessert",price:"—",icon:"🍰",desc:"کیک شکلاتی"},
+];
+
+const categories=[...new Set(items.map(x=>x.cat))];
+const catBox=document.querySelector("#categories");
+let activeCat="همه", activeFilter="all", query="";
+catBox.innerHTML=['همه',...categories].map(c=>`<button class="chip ${c==="همه"?'active':''}" data-cat="${c}">${c}</button>`).join("");
+
+document.querySelectorAll(".filter").forEach(b=>b.classList.toggle("active",b.dataset.filter==="all"));
+
+function render(){
+ const q=query.trim().toLowerCase();
+ const result=items.filter(x=>
+   (activeCat==="همه"||x.cat===activeCat) &&
+   (activeFilter==="all" || (activeFilter==="popular"?x.popular:x.cat===activeFilter)) &&
+   (!q || `${x.name} ${x.cat} ${x.desc}`.toLowerCase().includes(q))
+ );
+ document.querySelector("#grid").innerHTML=result.map((x,i)=>`
+   <article class="card" style="animation-delay:${Math.min(i*0.045,0.35)}s">
+    <div class="top"><div class="icon">${x.icon}</div>${x.popular?'<span class="badge">پرفروش</span>':''}</div>
+    <h3>${x.name}</h3><p class="desc">${x.desc}</p>
+    <div class="bottom"><span class="price">${x.price} <span class="unit">تومان</span></span><span>${x.type==="hot"?"گرم":x.type==="cold"?"سرد":x.type==="food"?"غذا":"دسر"}</span></div>
+   </article>`).join("");
+ document.querySelector("#empty").style.display=result.length?"none":"block";
+}
+catBox.addEventListener("click",e=>{if(!e.target.matches(".chip"))return;activeCat=e.target.dataset.cat;document.querySelectorAll(".chip").forEach(b=>b.classList.toggle("active",b===e.target));render()});
+document.querySelector("#filters").addEventListener("click",e=>{if(!e.target.matches(".filter"))return;activeFilter=e.target.dataset.filter;document.querySelectorAll(".filter").forEach(b=>b.classList.toggle("active",b===e.target));render()});
+document.querySelector("#search").addEventListener("input",e=>{query=e.target.value;render()});
+render();
+</script>
+</body>
+</html>
